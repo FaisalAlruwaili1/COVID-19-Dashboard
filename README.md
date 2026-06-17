@@ -1,19 +1,14 @@
 # COVID-19 Dashboard
 
-This project documents a complete data analysis workflow, starting from raw data and culminating in a forecasting model. The goal is to process and understand COVID-19 case data to build a tool that can provide future projections. The journey begins with data ingestion and cleaning, moves through detailed exploration and visualization, and concludes with the application of a neural network to predict future trends.
+This project is an end-to-end COVID-19 analytics dashboard covering global cases, deaths, and vaccinations from 2020 to 2022. It takes raw pandemic data through cleaning, processing, and visualization to produce an interactive dashboard that lets users explore how the pandemic evolved worldwide over this three-year period. The dashboard consolidates key metrics into a single view, making it easy to track trends, compare regions, and understand the relationship between case spread, mortality, and vaccine rollout.
 
 ## Tools & Libraries
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge)
-
 ![Seaborn](https://img.shields.io/badge/Seaborn-2E8B57?style=for-the-badge)
-
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-
 ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
 
 ## License 
@@ -33,31 +28,87 @@ This project documents a complete data analysis workflow, starting from raw data
   * License: Creative Commons Attribution 4.0 International (CC BY 4.0) [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
   * Used metric: `cumulative` vaccination data
 
+## Dataset
 
+**COVID-19 Stream Dataset** — 90,188 records covering daily COVID-19 case and death counts by country, with the following features:
+- `day`, `month`, `year` — date components for each record
+- `cases`, `deaths` — daily reported case and death counts
+- `countriesAndTerritories`, `geoId`, `countryterritoryCode` — country/territory identifiers
+- `popData2019`, `popData2020` — population figures used for normalization
+- `continentExp` — continent classification
+- `Cumulative_number_for_14_days_of_COVID-19_cases_per_100000` — 14-day cumulative case rate per 100,000 population
 
-## Requirements & Usage
+**COVID-19 Vaccinations Dataset** — 707 records tracking vaccination progress by country, with the following features:
+- `Entity` — country or territory name
+- `Code` — country code
+- `People fully vaccinated (cumulative)` — cumulative count of fully vaccinated individuals
 
+## Project Steps
+
+1. **Loading and Cleaning Data** — Import both datasets, handle missing values, correct data types, and align country identifiers for consistent merging.
+2. **Exploratory Data Analysis (EDA)** — Examine trends and distributions in cases, deaths, and vaccinations to identify patterns, outliers, and relationships in the data.
+3. **Interactive Charts** — Build individual interactive visualizations using Plotly to represent cases, deaths, and vaccination progress.
+4. **Dashboard** — Assemble the individual charts into a unified, interactive dashboard that allows users to explore the data.
+
+## How to Run
+
+**1. Clone the repository**
 ```bash
-pip install pandas seaborn numpy matplotlib statsmodels scikit-learn tensorflow
+git clone https://github.com/your-username/diabetes-ml-dashboard.git
+cd diabetes-ml-dashboard
+```
 
-# Usage
-python covid_analysis.py
+**2. Install dependencies**
+```bash
+pip install -r requirements.txt
+```
 
+**3. Add the dataset**
+
+Place datasets in the project root folder and update the path in `diabetes_dashboard.py`:
+```python
+df = pd.read_csv("diabetes_dataset.csv")
+```
+
+**4. Run the dashboard**
+```bash
+python diabetes_dashboard.py
 ```
 ## File Structure
 
-The project contains the following files:
+```
+Diabetes-Prediction/
+│
+├── data/
+│   └── diabetes_dataset.csv
+│
+├── notebooks/
+│   ├── Diabetes_ML.ipynb
+│   └── Model_Comparison.ipynb
+│
+├── src/
+│   ├── __init__.py
+│   ├── diabetes_dashboard.py
+│
+├── requirements.txt
+├── Procfile
+└── README.md
+```
 
-- `README.md` — This file, containing project overview and instructions  
-- `Python-Script` — Main Python script for data analysis and forecasting  
-- `Data` — COVID19 Dataset 
+---
 
-## Contributing
+## Requirements
 
-This is a community project! You are welcome to:  
+```
+dash
+dash-bootstrap-components
+plotly
+pandas
+numpy
+scikit-learn
+xgboost
+gunicorn
+```
 
-- Fork the repository  
-- Add new features  
-- Improve the existing code  
 
 If you find any issues or have suggestions, please open an issue — I’d love to hear from you.
