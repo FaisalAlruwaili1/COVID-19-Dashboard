@@ -54,17 +54,17 @@ This project is an end-to-end COVID-19 analytics dashboard covering global cases
 
 ### Correlation Between Cases and Deaths
 
-![Correlation Between Cases and Deaths](images/Correlation.png)
+![Correlation Between Cases and Deaths](charts/Correlation.png)
 
 
 ### Top 15 Countries by Total COVID-19 Cases
 
-![Top 15 Countries by Total Cases](images/Top_15_Cases.png)
+![Top 15 Countries by Total Cases](charts/Top_15_Cases.png)
 
 
 ### Top 15 Countries by Total COVID-19 Deaths
 
-![Top 15 Countries by Total Deaths](images/Top_15_Deaths.png)
+![Top 15 Countries by Total Deaths](charts/Top_15_Deaths.png)
 
 ## How to Run
 
