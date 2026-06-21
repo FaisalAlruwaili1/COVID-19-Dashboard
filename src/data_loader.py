@@ -1,10 +1,10 @@
 import pandas as pd
 
 def load_covid_records():
-    data1 = pd.read_json("COVID_Dataset")
+    data1 = pd.read_json("Data/json.json")
     df1 = pd.json_normalize(data1["records"])
 
-    data2 = pd.read_json("json_1")
+    data2 = pd.read_json("Data/json_1.json")
     df2 = pd.json_normalize(data2["records"])
 
     df = pd.concat([df1, df2], axis=0)
