@@ -66,49 +66,30 @@ This project is an end-to-end COVID-19 analytics dashboard covering global cases
 
 ![Top 15 Countries by Total Deaths](charts/Top_15_Deaths.png)
 
-## How to Run
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/your-username/diabetes-ml-dashboard.git
-cd diabetes-ml-dashboard
-```
-
-**2. Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-**3. Add the dataset**
-
-Place datasets in the project root folder and update the path in `diabetes_dashboard.py`:
-```python
-df = pd.read_csv("diabetes_dataset.csv")
-```
-
-**4. Run the dashboard**
-```bash
-python diabetes_dashboard.py
-```
 ## File Structure
 
 ```
-Diabetes-Prediction/
+COVID-19-Dashboard/
+│
+├── index.html 
 │
 ├── data/
-│   └── diabetes_dataset.csv
+│ ├── json/
+│ ├── json_1/
+│ └── number-of-people-who-completed-the-initial-covid-19-vaccination-protocol.csv
 │
-├── notebooks/
-│   ├── Diabetes_ML.ipynb
-│   └── Model_Comparison.ipynb
+├── charts/
+│ ├── Correlation
+│ ├── Top_15_Cases
+│ └── Top_15_Deaths
 │
 ├── src/
-│   ├── __init__.py
-│   ├── diabetes_dashboard.py
+│ ├── data_loader.py 
+│ ├── EDA.py 
+│ ├── plotly_fig.py 
+│ └── dashboard.py 
 │
-├── requirements.txt
-├── Procfile
-└── README.md
+└── README.md # Project documentation   
 ```
 
 ---
@@ -116,14 +97,10 @@ Diabetes-Prediction/
 ## Requirements
 
 ```
-dash
-dash-bootstrap-components
-plotly
-pandas
-numpy
-scikit-learn
-xgboost
-gunicorn
+matplotlib==3.10.6
+pandas==2.3.2
+plotly==6.3.0
+seaborn==0.13.2
 ```
 
 
