@@ -29,7 +29,7 @@ vac = fig_vac(df, total_vaccinated)
 
 
 # HTML
-with open("covid_dashboard.html", "w") as f:
+with open("covid_dashboard.html", "w", encoding="utf-8") as f:
 
     f.write("""
 
