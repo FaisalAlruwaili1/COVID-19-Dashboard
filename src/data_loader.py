@@ -1,10 +1,10 @@
 import pandas as pd
 
 def load_covid_records():
-    data1 = pd.read_json("Data/json.json")
+    data1 = pd.read_json("json")
     df1 = pd.json_normalize(data1["records"])
 
-    data2 = pd.read_json("Data/json_1.json")
+    data2 = pd.read_json("json_1")
     df2 = pd.json_normalize(data2["records"])
 
     df = pd.concat([df1, df2], axis=0)
@@ -15,6 +15,8 @@ def load_covid_records():
     )
 
     df = df[(df["cases"] >= 0) & (df["deaths"] >= 0)]
+
+    df = df.reset_index(drop=True)
 
     df["dateRep"] = pd.to_datetime(df["dateRep"], format="%d/%m/%Y")
     df = df.sort_values("dateRep")
@@ -62,6 +64,25 @@ def get_grouped_by_country_cases(df):
     )
 
     return df_grouped_by_country_cases
+
+def get_grouped_by_country_deaths(df):
+    df = df
+
+    df["countriesAndTerritories"] = df["countriesAndTerritories"].replace(
+        "United_States_of_America",
+        "United_States"
+    )
+
+    df_grouped_by_country_deaths = (
+        df.groupby(
+            ["countriesAndTerritories", "countryterritoryCode"]
+        )[["deaths"]]
+        .sum()
+        .sort_values("deaths", ascending=False)
+        .reset_index()
+    )
+
+    return df_grouped_by_country_deaths
 
 def get_grouped_by_country_and_pop(df):
     
