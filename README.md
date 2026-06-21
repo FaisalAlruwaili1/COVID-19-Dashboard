@@ -50,6 +50,22 @@ This project is an end-to-end COVID-19 analytics dashboard covering global cases
 3. **Interactive Charts** — Build individual interactive visualizations using Plotly to represent cases, deaths, and vaccination progress.
 4. **Dashboard** — Assemble the individual charts into a unified, interactive dashboard that allows users to explore the data.
 
+## Key Visualizations from Exploratory Data Analysis:
+
+### Correlation Between Cases and Deaths
+
+![Correlation Between Cases and Deaths](images/Correlation.png)
+
+
+### Top 15 Countries by Total COVID-19 Cases
+
+![Top 15 Countries by Total Cases](images/Top_15_Cases.png)
+
+
+### Top 15 Countries by Total COVID-19 Deaths
+
+![Top 15 Countries by Total Deaths](images/Top_15_Deaths.png)
+
 ## How to Run
 
 **1. Clone the repository**
