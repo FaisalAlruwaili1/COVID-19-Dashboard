@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib.ticker import ScalarFormatter
 import statsmodels.api as sm
 import seaborn as sns 
-from data_loader import load_covid_records, get_total_by_month, get_grouped_by_country_cases, get_grouped_by_country_and_pop, get_grouped_by_country_top_death_to_case
+from data_loader import load_covid_records, get_total_by_month, get_grouped_by_country_cases, get_grouped_by_country_deaths, get_grouped_by_country_and_pop, get_grouped_by_country_top_death_to_case
 
 df = load_covid_records()
 
@@ -31,6 +31,8 @@ print(df["countriesAndTerritories"].value_counts())
 
 df_grouped_by_country_cases = get_grouped_by_country_cases(df)
 
+df_grouped_by_country_deaths = get_grouped_by_country_deaths(df)
+
 df_grouped_by_country_and_pop = get_grouped_by_country_and_pop(df)
 
 df_grouped_by_country_top_death_to_case = (
@@ -39,26 +41,38 @@ df_grouped_by_country_top_death_to_case = (
 
 df_total_by_month = get_total_by_month(df)
 
-
-print(df_grouped_by_country_cases.head(5))
-
 df_top_cases = df_grouped_by_country_cases.head(15)
 
-plt.figure(figsize=(10, 6))
+df_top_deaths = df_grouped_by_country_deaths.head(15)
+
+plt.figure(figsize=(6,4))
 plt.bar(
     df_top_cases["countriesAndTerritories"],
     df_top_cases["cases"] / 1_000_000,
-    label="Cases"
+    label="Cases", color="blue"
 )
 
 plt.ylabel("Total (Millions)")
 plt.title("Top 15 Countries - Total COVID Cases")
-plt.xticks(rotation=60)
+plt.xticks(rotation=45)
 plt.legend()
+plt.tight_layout()
 plt.show()
 
+plt.figure(figsize=(6,4))
+plt.bar(
+    df_top_deaths["countriesAndTerritories"],
+    df_top_deaths["deaths"] / 1000,
+    label="deaths", color="red"
+)
+plt.ylabel('Total')
+plt.title('Top 15 Countries in total COVID Deaths - Thousands')
+plt.xticks(rotation=45)
+plt.legend()
+plt.tight_layout()
+plt.show()
 
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(8, 6))
 plt.plot(df_total_by_month.index, df_total_by_month["cases"], label="Cases")
 
 plt.legend()
@@ -80,10 +94,6 @@ sm.qqplot(df["cases"], line="45")
 plt.title("QQ Plot - Cases")
 plt.show()
 
-
-df["dateRep"] = pd.to_datetime(df["dateRep"], format="%d/%m/%Y")
-df = df.set_index("dateRep").sort_index()
-
 df["cases_rolling"] = df["cases"].rolling(window=7).mean()
 
 plt.figure(figsize=(10, 6))
@@ -96,7 +106,7 @@ plt.xticks(rotation=45)
 plt.show()
 
 
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(8, 6))
 plt.scatter(df["cases"], df["deaths"])
 
 plt.title("Cases vs Deaths Correlation")
